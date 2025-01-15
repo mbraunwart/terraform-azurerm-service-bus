@@ -17,12 +17,7 @@ resource "azurerm_storage_container" "c" {
 }
 
 resource "azurerm_role_assignment" "container_access" {
-  for_each = local.storage_enabled ? {
-    service_bus   = local.containers.service_bus
-    dead_letter   = local.containers.dead_letter
-    session_state = local.containers.session_state
-  } : {}
-  scope                = azurerm_storage_container.c["service_bus"].id
+  scope                = var.storage_configuration.storage_account_id
   role_definition_name = "Storage Blob Data Contributor"
   principal_id         = azurerm_servicebus_namespace.sb_ns.identity[0].principal_id
 }
