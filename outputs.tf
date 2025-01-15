@@ -100,10 +100,10 @@ output "topic_names" {
 # Diagnostic settings outputs
 output "diagnostic_setting_id" {
   description = "The ID of the diagnostic setting"
-  value       = azurerm_monitor_diagnostic_setting.sb_diag.id
+  value       = var.log_analytics_workspace_id != "" ? azurerm_monitor_diagnostic_setting.sb_diag.0.id : null
 }
 
 output "diagnostic_setting_name" {
   description = "The name of the diagnostic setting"
-  value       = azurerm_monitor_diagnostic_setting.sb_diag.name
+  value       = var.log_analytics_workspace_id != "" ? azurerm_monitor_diagnostic_setting.sb_diag.0.name : null
 }

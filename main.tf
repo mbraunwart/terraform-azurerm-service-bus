@@ -38,6 +38,7 @@ resource "azurerm_servicebus_namespace_authorization_rule" "manage_only" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "sb_diag" {
+  count                      = var.log_analytics_workspace_id != ""
   name                       = "servicebus-diag"
   target_resource_id         = azurerm_servicebus_namespace.sb_ns.id
   log_analytics_workspace_id = var.log_analytics_workspace_id
