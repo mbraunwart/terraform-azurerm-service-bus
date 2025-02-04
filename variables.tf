@@ -17,10 +17,11 @@ variable "log_analytics_workspace_id" {
 variable "servicebus_namespace" {
   description = "The Service Bus namespace configuration."
   type = object({
-    name                         = string
-    sku                          = optional(string, "Premium")
-    capacity                     = optional(number, 1)
-    premium_messaging_partitions = optional(number, 1)
+    name                          = string
+    sku                           = optional(string, "Premium")
+    capacity                      = optional(number, 1)
+    premium_messaging_partitions  = optional(number, 1)
+    public_network_access_enabled = optional(bool, false)
     auth_rules = object({
       send   = optional(bool, false)
       listen = optional(bool, false)

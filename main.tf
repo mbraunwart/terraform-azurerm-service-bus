@@ -4,7 +4,7 @@ resource "azurerm_servicebus_namespace" "sb_ns" {
   resource_group_name           = var.resource_group_name
   sku                           = var.servicebus_namespace.sku
   capacity                      = var.servicebus_namespace.capacity
-  public_network_access_enabled = false
+  public_network_access_enabled = var.servicebus_namespace.public_network_access_enabled
   premium_messaging_partitions  = var.servicebus_namespace.premium_messaging_partitions
 
   identity {
